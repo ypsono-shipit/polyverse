@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/poly-web/:path*",
+      "destination": "https://polymarket.com/:path*"
+    },
+    {
+      "source": "/api/polymarket/:path*",
+      "destination": "https://gamma-api.polymarket.com/:path*"
+    },
+    {
+      "source": "/api/kalshi/:path*",
+      "destination": "https://dev-prediction-markets-api.dflow.net/:path*"
+    },
+    {
+      "source": "/api/dflow-trade/:path*",
+      "destination": "https://dev-quote-api.dflow.net/:path*"
+    }
+  ]
+}
