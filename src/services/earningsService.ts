@@ -189,13 +189,8 @@ export async function fetchCompanyProfile(symbol: string): Promise<{ name: strin
 
 // --- Polymarket earnings lookup ---
 
-const POLYMARKET_API = import.meta.env.DEV
-  ? '/api/polymarket'
-  : 'https://gamma-api.polymarket.com';
-
-const POLYMARKET_WEB = import.meta.env.DEV
-  ? '/api/poly-web'
-  : 'https://polymarket.com';
+const POLYMARKET_API = '/api/polymarket';
+const POLYMARKET_WEB = '/api/poly-web';
 
 // Ticker -> slug map scraped from Polymarket earnings page
 let earningsSlugMap: Map<string, string> | null = null;

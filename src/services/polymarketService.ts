@@ -83,10 +83,7 @@ function parseOutcomePrices(raw: string): { yes: number; no: number } {
   return { yes: 0.5, no: 0.5 };
 }
 
-// In dev, proxy through Vite to avoid CORS. In production, call directly.
-const API_BASE = import.meta.env.DEV
-  ? '/api/polymarket'
-  : 'https://gamma-api.polymarket.com';
+const API_BASE = '/api/polymarket';
 const API_URL = `${API_BASE}/markets?active=true&closed=false&limit=100&order=volume24hr&ascending=false`;
 
 let cache: MarketData[] = [];

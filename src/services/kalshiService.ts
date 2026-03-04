@@ -3,9 +3,7 @@ import { detectLocation, getLocationInfo, formatVolume, computeSize, spreadCoord
 
 const DFLOW_KEY = process.env.DFLOW_API_KEY || '';
 
-const API_BASE = import.meta.env.DEV
-  ? '/api/kalshi'
-  : 'https://dev-prediction-markets-api.dflow.net';
+const API_BASE = '/api/kalshi';
 const API_URL = `${API_BASE}/api/v1/markets?limit=200&status=active&sort=volume&order=desc`;
 
 let cache: MarketData[] = [];

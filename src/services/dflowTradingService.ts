@@ -1,4 +1,4 @@
-const TRADE_API = import.meta.env.DEV ? '/api/dflow-trade' : 'https://dev-quote-api.dflow.net';
+const TRADE_API = '/api/dflow-trade';
 const DFLOW_KEY = process.env.DFLOW_API_KEY || '';
 const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 
