@@ -23,7 +23,7 @@ export default function BottomOverlay() {
           </button>
         </div>
         <div className="text-gray-500 text-xs font-mono">
-          presented by <span className="text-blue-500/70">xaitoshi</span>
+          presented by <span className="text-blue-500/70">ypsono</span>
         </div>
       </div>
 
