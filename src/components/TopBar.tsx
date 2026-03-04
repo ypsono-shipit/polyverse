@@ -118,12 +118,6 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
       </div>
 
       <div className="flex items-center gap-4 pointer-events-auto">
-        <button
-          onClick={() => window.open('https://dexscreener.com/solana/chcvntbwiudh9zz1uhyhnge9d82bsvw6ekgkblguc9af', '_blank', 'noopener,noreferrer')}
-          className="bg-black/60 border border-blue-500/30 backdrop-blur-md px-4 py-2 rounded-lg text-blue-400 font-mono text-sm flex items-center gap-2 cursor-pointer hover:border-blue-500/60 hover:bg-blue-500/10 transition-colors"
-        >
-          $POLYVERSE <span className="text-xs bg-blue-500/20 px-1.5 py-0.5 rounded">LIVE</span>
-        </button>
         <div className="relative" ref={wrapperRef}>
           <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-blue-500/50 z-10" />
           <input
