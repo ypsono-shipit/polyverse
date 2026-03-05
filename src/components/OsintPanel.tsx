@@ -143,7 +143,7 @@ export default function OsintPanel({ marketData, onClose, onAlerts, onRefreshMar
     : '';
 
   return (
-    <div className="absolute right-6 top-24 bottom-24 w-96 bg-black/80 border border-blue-500/30 backdrop-blur-xl rounded-xl p-6 flex flex-col z-20 pointer-events-auto overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+    <div className="fixed inset-0 z-30 md:absolute md:inset-auto md:right-6 md:top-24 md:bottom-24 w-full md:w-96 bg-black/80 border border-blue-500/30 backdrop-blur-xl md:rounded-xl p-6 flex flex-col pointer-events-auto overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.1)]">
       <button
         onClick={onClose}
         className="absolute top-4 right-4 text-gray-400 hover:text-blue-400 transition-colors"

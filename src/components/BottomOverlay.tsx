@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function BottomOverlay() {
   return (
-    <div className="absolute bottom-0 left-0 right-0 z-10 p-6 flex items-end justify-between pointer-events-none">
+    <div className="absolute bottom-0 left-0 right-0 z-10 p-3 md:p-6 flex flex-col md:flex-row items-start md:items-end justify-between gap-3 md:gap-0 pointer-events-none">
       <div className="flex flex-col gap-2 pointer-events-auto">
-        <div className="flex items-center gap-2 text-gray-400 text-sm font-mono">
+        <div className="flex items-center gap-2 text-gray-400 text-xs md:text-sm font-mono flex-wrap">
           trade on 
           <button
             onClick={() => window.open('https://polymarket.com', '_blank', 'noopener,noreferrer')}
@@ -27,7 +27,7 @@ export default function BottomOverlay() {
         </div>
       </div>
 
-      <div className="text-right max-w-md pointer-events-auto">
+      <div className="hidden md:block text-right max-w-md pointer-events-auto">
         <p className="text-gray-400 font-mono text-sm leading-relaxed">
           The live <span className="text-blue-400">Polymarket map</span> & <span className="text-blue-400">PolyClaw market tracker</span><br/>
           for geopolitical prediction markets. Your<br/>

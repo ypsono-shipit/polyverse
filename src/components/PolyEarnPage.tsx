@@ -375,7 +375,7 @@ export default function PolyEarnPage({ onClose }: PolyEarnPageProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="w-full max-w-5xl bg-[#0a0a0a] border border-blue-500/30 rounded-xl shadow-[0_0_40px_rgba(0,255,0,0.1)] flex flex-col max-h-[90vh]">
+      <div className="w-full max-w-full md:max-w-5xl bg-[#0a0a0a] border border-blue-500/30 rounded-xl shadow-[0_0_40px_rgba(0,255,0,0.1)] flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-blue-500/20">
           <div>

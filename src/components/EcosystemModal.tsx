@@ -21,7 +21,7 @@ export default function EcosystemModal({ onClose, onOpenAdmin }: EcosystemModalP
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="w-full max-w-4xl bg-[#0a0a0a] border border-blue-500/30 rounded-xl shadow-[0_0_40px_rgba(59,130,246,0.1)] flex flex-col max-h-[85vh]">
+      <div className="w-full max-w-full md:max-w-4xl bg-[#0a0a0a] border border-blue-500/30 rounded-xl shadow-[0_0_40px_rgba(59,130,246,0.1)] flex flex-col max-h-[85vh]">
         <div className="flex items-center justify-between p-6 border-b border-blue-500/20">
           <div>
             <h2 className="text-2xl font-bold text-white tracking-tight">Ecosystem Projects</h2>

@@ -15,7 +15,7 @@ export default function MarketPanel({ market, onClose, onTrade }: MarketPanelPro
   const shadowClass = isKalshi ? 'shadow-[0_0_30px_rgba(59,130,246,0.1)]' : 'shadow-[0_0_30px_rgba(59,130,246,0.1)]';
 
   return (
-    <div className={`absolute right-6 top-24 bottom-24 w-96 bg-black/80 border ${borderClass} backdrop-blur-xl rounded-xl p-6 flex flex-col z-20 pointer-events-auto overflow-hidden ${shadowClass}`}>
+    <div className={`fixed inset-0 z-30 md:absolute md:inset-auto md:right-6 md:top-24 md:bottom-24 w-full md:w-96 bg-black/80 border ${borderClass} backdrop-blur-xl md:rounded-xl p-6 flex flex-col pointer-events-auto overflow-hidden ${shadowClass}`}>
       <button 
         onClick={onClose}
         className="absolute top-4 right-4 text-gray-400 hover:text-blue-400 transition-colors"

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Globe2, Map, Zap, Activity, Layers, TrendingUp, ExternalLink } from 'lucide-react';
+import { Search, Globe2, Map, Zap, Activity, Layers, TrendingUp, ExternalLink, Menu, X } from 'lucide-react';
 import { MarketData } from '../data/mockData';
 
 interface SearchResult {
@@ -25,6 +25,7 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -74,7 +75,16 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
           POLYVERSE
         </div>
 
-        <div className="flex items-center bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg overflow-hidden p-1">
+        {/* Hamburger button - mobile only */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg p-2 text-blue-400"
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+
+        {/* Desktop nav buttons */}
+        <div className="hidden md:flex items-center bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg overflow-hidden p-1">
           <button
             onClick={() => onViewModeChange('globe')}
             className={`px-4 py-1.5 rounded-md text-sm font-medium flex items-center gap-2 transition-colors ${viewMode === 'globe' ? 'bg-blue-500/20 text-blue-400' : 'text-gray-400 hover:text-blue-400'}`}
@@ -89,7 +99,7 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
           </button>
         </div>
 
-        <div className="flex items-center bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg overflow-hidden p-1 gap-1">
+        <div className="hidden md:flex items-center bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg overflow-hidden p-1 gap-1">
           <button className="px-4 py-1.5 border border-blue-500/50 text-blue-400 rounded-md text-sm font-medium flex items-center gap-2">
             <Zap className="w-4 h-4" /> Breaking
           </button>
@@ -101,7 +111,7 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
           </button>
         </div>
 
-        <div className="flex items-center bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg px-2 py-1 gap-1">
+        <div className="hidden md:flex items-center bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg px-2 py-1 gap-1">
           <button
             onClick={onOpenEcosystem}
             className="text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 px-3 py-1.5 rounded text-sm font-mono flex items-center gap-2 transition-colors"
@@ -117,7 +127,8 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
         </div>
       </div>
 
-      <div className="flex items-center gap-4 pointer-events-auto">
+      {/* Desktop search */}
+      <div className="hidden md:flex items-center gap-4 pointer-events-auto">
         <div className="relative" ref={wrapperRef}>
           <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-blue-500/50 z-10" />
           <input
@@ -130,7 +141,7 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
           />
 
           {isOpen && results.length > 0 && (
-            <div className="absolute top-full mt-2 right-0 w-96 max-h-80 overflow-y-auto bg-black/95 border border-blue-500/30 rounded-lg backdrop-blur-xl shadow-2xl z-50">
+            <div className="absolute top-full mt-2 right-0 w-[calc(100vw-2rem)] md:w-96 max-h-80 overflow-y-auto bg-black/95 border border-blue-500/30 rounded-lg backdrop-blur-xl shadow-2xl z-50">
               {results.map((r, i) => (
                 <button
                   key={i}
@@ -167,6 +178,90 @@ export default function TopBar({ viewMode, onViewModeChange, onOpenEcosystem, on
           )}
         </div>
       </div>
+
+      {/* Mobile dropdown menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-x-0 top-[72px] z-50 pointer-events-auto bg-black/95 border-b border-blue-500/30 backdrop-blur-xl p-4 space-y-3">
+          {/* Search */}
+          <div className="relative" ref={wrapperRef}>
+            <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-blue-500/50 z-10" />
+            <input
+              type="text"
+              placeholder="Search markets..."
+              value={query}
+              onChange={(e) => handleSearch(e.target.value)}
+              onFocus={() => { if (results.length > 0) setIsOpen(true); }}
+              className="w-full bg-black/60 border border-blue-500/30 backdrop-blur-md rounded-lg pl-10 pr-4 py-2 text-sm text-blue-50 focus:outline-none focus:border-blue-500 placeholder:text-blue-500/30 transition-colors"
+            />
+            {isOpen && results.length > 0 && (
+              <div className="absolute top-full mt-2 left-0 right-0 max-h-60 overflow-y-auto bg-black/95 border border-blue-500/30 rounded-lg backdrop-blur-xl shadow-2xl z-50">
+                {results.map((r, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      onSelectMarket(r.market);
+                      setIsOpen(false);
+                      setQuery('');
+                      setResults([]);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-3 hover:bg-blue-500/10 border-b border-blue-500/10 last:border-b-0 transition-colors"
+                  >
+                    <div className="text-sm text-gray-200 leading-snug truncate">{r.question}</div>
+                    <div className="flex items-center gap-3 mt-1">
+                      <span className="text-xs font-mono text-blue-400">YES {Math.round(r.yesPrice * 100)}¢</span>
+                      <span className="text-xs font-mono text-gray-500">{r.volume}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* View mode toggle */}
+          <div className="flex gap-2">
+            <button
+              onClick={() => { onViewModeChange('globe'); setMobileMenuOpen(false); }}
+              className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors ${viewMode === 'globe' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50' : 'text-gray-400 border border-blue-500/20'}`}
+            >
+              <Globe2 className="w-4 h-4" /> Globe
+            </button>
+            <button
+              onClick={() => { onViewModeChange('flat'); setMobileMenuOpen(false); }}
+              className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors ${viewMode === 'flat' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50' : 'text-gray-400 border border-blue-500/20'}`}
+            >
+              <Map className="w-4 h-4" /> Flat
+            </button>
+          </div>
+
+          {/* Nav buttons */}
+          <div className="space-y-2">
+            <button
+              className="w-full px-4 py-2 border border-blue-500/50 text-blue-400 rounded-lg text-sm font-medium flex items-center gap-2"
+            >
+              <Zap className="w-4 h-4" /> Breaking
+            </button>
+            <button
+              onClick={() => { onOpenOsint(); setMobileMenuOpen(false); }}
+              className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${isOsintOpen ? 'border border-blue-500/50 text-blue-400 bg-blue-500/10' : 'text-gray-400 border border-blue-500/20'}`}
+            >
+              <Activity className="w-4 h-4" /> PolyClaw
+            </button>
+            <button
+              onClick={() => { onOpenEcosystem(); setMobileMenuOpen(false); }}
+              className="w-full text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 px-4 py-2 rounded-lg text-sm font-mono flex items-center gap-2 transition-colors border border-blue-500/20"
+            >
+              <Layers className="w-4 h-4"/> Ecosystem
+            </button>
+            <button
+              onClick={() => { onOpenPolyEarn(); setMobileMenuOpen(false); }}
+              className="w-full text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 px-4 py-2 rounded-lg text-sm font-mono flex items-center gap-2 transition-colors border border-blue-500/20"
+            >
+              <TrendingUp className="w-4 h-4"/> PolyEarn
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

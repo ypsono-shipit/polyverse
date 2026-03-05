@@ -91,7 +91,9 @@ export default function App() {
             marketData={marketData}
             onSelectMarket={handleSelectMarket}
           />
-          <LiveNewsFeed />
+          <div className="hidden md:block">
+            <LiveNewsFeed />
+          </div>
 
           {selectedMarket && (
             <MarketPanel

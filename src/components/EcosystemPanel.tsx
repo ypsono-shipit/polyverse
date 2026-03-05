@@ -25,7 +25,7 @@ export default function EcosystemPanel({ onClose }: EcosystemPanelProps) {
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-auto bg-black/60 backdrop-blur-sm">
-      <div className="w-[600px] max-h-[80vh] bg-black/90 border border-blue-500/30 rounded-xl p-6 flex flex-col shadow-[0_0_30px_rgba(59,130,246,0.15)]">
+      <div className="w-full max-w-[600px] max-h-[80vh] bg-black/90 border border-blue-500/30 rounded-xl p-4 md:p-6 flex flex-col shadow-[0_0_30px_rgba(59,130,246,0.15)]">
         <div className="flex justify-between items-center mb-6 border-b border-blue-500/20 pb-4">
           <div className="flex items-center gap-3">
             <Layers className="w-6 h-6 text-blue-400" />
